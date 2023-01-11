@@ -100,6 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Want to log in?"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
