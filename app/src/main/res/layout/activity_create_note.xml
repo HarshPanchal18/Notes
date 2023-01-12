@@ -16,7 +16,7 @@
             android:id="@+id/createNoteTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter title here"
+            android:hint="Enter note title"
             android:paddingTop="12dp"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -31,10 +31,10 @@
         android:layout_below="@id/newNoteToolbar"
         android:background="#faf7f7"
         android:gravity="top|left"
-        android:hint="Enter note content/description"
+        android:hint="Enter note content"
         android:padding="15sp"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveNoteFAB"
@@ -47,7 +47,7 @@
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_save_24"
         android:background="#a1f4fb"
-        app:maxImageSize="55sp" />
+        app:maxImageSize="40sp" />
 
     <ProgressBar
         android:id="@+id/createProgress"

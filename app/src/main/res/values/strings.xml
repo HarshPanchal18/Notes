@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Take Notes</string>
+    <string name="home_title">Take Notes</string>
+    <string name="no_notes">No notes to display here\nPress <strong>+</strong> to add a new one.</string>
 </resources>

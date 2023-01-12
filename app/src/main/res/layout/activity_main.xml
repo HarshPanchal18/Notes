@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f9f9f9"
+    android:id="@+id/loginScreen"
     tools:context=".MainActivity">
 
     <ProgressBar
@@ -35,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Welcome back!"
+            android:fontFamily="@font/stairs"
             android:textSize="42sp"
             android:textColor="#ffbd4d"
             android:textStyle="bold" />
@@ -42,6 +44,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/stairs"
             android:text="Log in to continue"
             android:textSize="23sp"
             android:textColor="#ff8596" />
@@ -97,12 +100,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"
-            android:textSize="16sp"
             android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
             android:text="Log in"
-            android:textColor="@color/white" />
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <TextView
@@ -113,10 +117,11 @@
         android:layout_marginLeft="20sp"
         android:layout_marginTop="20sp"
         android:layout_marginRight="20sp"
+        android:fontFamily="@font/montserrat"
         android:text="Forgot Password"
-        android:textSize="15sp"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="16sp"
         android:visibility="visible" />
 
     <RelativeLayout
@@ -135,9 +140,18 @@
             android:textStyle="bold"
             android:layout_marginStart="8dp"
             android:textSize="16sp"
+            android:fontFamily="sans-serif-black"
             android:layout_centerInParent="true"
             android:text="New user? Want to Sign in?"
             android:textColor="@color/white" />
     </RelativeLayout>
+
+    <!--<ImageView
+        android:id="@+id/splashImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/splash_image" />-->
 
 </RelativeLayout>

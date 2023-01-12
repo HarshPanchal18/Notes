@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        supportActionBar?.title="Your quick notes"
+        supportActionBar?.title=getString(R.string.home_title)
         val actionBar: ActionBar? = supportActionBar
         val colorDrawable = ColorDrawable(Color.parseColor("#FF5693FD"))
         actionBar?.setBackgroundDrawable(colorDrawable)
@@ -85,6 +85,15 @@ class HomeActivity : AppCompatActivity() {
                         }
                     })
 
+                    popup.menu.add("Share").setOnMenuItemClickListener {
+                        val intent = Intent()
+                        intent.action = Intent.ACTION_SEND
+                        intent.putExtra(Intent.EXTRA_TEXT, "${firebasemodel.title}\n\n${firebasemodel.description}")
+                        intent.type = "text/plain"
+                        startActivity(Intent.createChooser(intent, "Select Your application:"))
+                        false
+                    }
+
                     popup.menu.add("Delete").setOnMenuItemClickListener {
                         val builder=AlertDialog.Builder(this@HomeActivity)
                         builder.setTitle("Delete Note")
@@ -97,9 +106,9 @@ class HomeActivity : AppCompatActivity() {
                                 .document(docId)
 
                             docRef.delete().addOnSuccessListener {
-                                Toast.makeText(applicationContext,
+                                /*Toast.makeText(applicationContext,
                                     "Note is deleted",
-                                    Toast.LENGTH_SHORT).show()
+                                    Toast.LENGTH_SHORT).show()*/
                             }.addOnFailureListener {
                                 Toast.makeText(applicationContext,
                                     "Failed to delete",
@@ -178,6 +187,9 @@ class HomeActivity : AppCompatActivity() {
                 auth.signOut()
                 finish()
                 startActivity(Intent(this,MainActivity::class.java))
+            }
+            R.id.changePassword -> {
+                startActivity(Intent(this,ChangePassword::class.java))
             }
         }
 

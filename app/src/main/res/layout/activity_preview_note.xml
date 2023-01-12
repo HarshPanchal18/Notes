@@ -7,7 +7,7 @@
     tools:context=".PreviewNote">
 
 
-    <androidx.appcompat.widget.Toolbar
+    <!--<androidx.appcompat.widget.Toolbar
         android:id="@+id/viewNoteToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -22,18 +22,17 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-    </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>-->
 
     <TextView
         android:id="@+id/viewNoteDescription"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/viewNoteToolbar"
         android:background="#faf7f7"
         android:gravity="top|left"
-        android:padding="15sp"
+        android:padding="25sp"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/editNoteFAB"
@@ -46,6 +45,6 @@
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_edit_24"
         android:background="#a1f4fb"
-        app:maxImageSize="55sp" />
+        app:maxImageSize="35sp" />
 
 </RelativeLayout>

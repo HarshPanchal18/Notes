@@ -1,6 +1,8 @@
 package com.example.notes_firebase
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,9 +13,12 @@ class PreviewNote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preview_note)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val data=intent
+
+        val colorDrawable = ColorDrawable(Color.parseColor("#FF5693FD"))
+        supportActionBar?.setBackgroundDrawable(colorDrawable)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title=data.getStringExtra("title")
 
         editNoteFAB.setOnClickListener{
             val intent= Intent(this,EditNote::class.java)
@@ -23,7 +28,7 @@ class PreviewNote : AppCompatActivity() {
             startActivity(intent)
         }
 
-        viewNoteTitle.text=data.getStringExtra("title")
+        //viewNoteTitle.text=data.getStringExtra("title")
         viewNoteDescription.text=data.getStringExtra("description")
     }
 
