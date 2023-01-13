@@ -41,7 +41,7 @@ class EditNote : AppCompatActivity() {
                 val docRef=firestore.collection("notes")
                     .document(user.uid)
                     .collection("myNotes")
-                    .document(data.getStringExtra("docId").toString())
+                    .document(data.getStringExtra("noteId").toString())
 
                 val note=HashMap<String,Any>()
                 note["title"] = updatedTitle

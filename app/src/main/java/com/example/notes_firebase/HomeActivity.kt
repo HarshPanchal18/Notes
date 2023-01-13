@@ -3,13 +3,18 @@ package com.example.notes_firebase
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notes_firebase.CreateNote.firebaseModel
@@ -23,7 +28,6 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.notes_grid.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
 
 class HomeActivity : AppCompatActivity() {
@@ -53,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
         val query=firestore.collection("notes")
             .document(user.uid)
             .collection("myNotes")
-            .orderBy("title",Query.Direction.ASCENDING)
+            .orderBy("title", Query.Direction.ASCENDING)
 
         val alluser : FirestoreRecyclerOptions<firebaseModel> = FirestoreRecyclerOptions.Builder<firebaseModel>()
             .setQuery(query,firebaseModel::class.java)
@@ -80,7 +84,7 @@ class HomeActivity : AppCompatActivity() {
                             intent.putExtra("title",firebasemodel.title)
                             intent.putExtra("description",firebasemodel.description)
                             intent.putExtra("noteId",docId)
-                            startActivity(intent)
+                            v.context.startActivity(intent)
                             return false
                         }
                     })
@@ -207,7 +211,23 @@ class HomeActivity : AppCompatActivity() {
             noteAdapter.stopListening()
     }*/
 
-    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
+    //inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class NoteViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val notetitle: TextView
+        private val notecontent: TextView
+        var mnote: LinearLayout
+
+        init {
+            notetitle = itemView.findViewById(R.id.noteTitle)
+            notecontent = itemView.findViewById(R.id.noteDesc)
+            mnote = itemView.findViewById(R.id.note)
+
+            //Animate Recyclerview
+            val translate_anim: Animation =
+                AnimationUtils.loadAnimation(itemView.context, R.anim.translate_anim)
+            mnote.animation = translate_anim
+        }
+    }
 
     private var backPressedTime:Long=0
     override fun onBackPressed() {

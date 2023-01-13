@@ -57,7 +57,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="10dp"
                 android:text="This is Description"
-                android:fontFamily="@font/lemony"
+                android:fontFamily="@font/montserrat"
                 android:textSize="22sp"
                 android:textColor="@color/black" />
 
