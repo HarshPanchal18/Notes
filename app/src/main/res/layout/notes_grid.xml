@@ -58,7 +58,7 @@
                 android:paddingTop="10dp"
                 android:text="This is Description"
                 android:fontFamily="@font/montserrat"
-                android:textSize="22sp"
+                android:textSize="17sp"
                 android:textColor="@color/black" />
 
         </LinearLayout>

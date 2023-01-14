@@ -1,9 +1,16 @@
 package com.example.notes_firebase
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -15,6 +22,7 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notes_firebase.CreateNote.firebaseModel
@@ -27,6 +35,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.notes_grid.view.*
+import java.io.File
+import java.io.FileOutputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -63,6 +75,13 @@ class HomeActivity : AppCompatActivity() {
             .setQuery(query,firebaseModel::class.java)
             .build()
 
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE),
+            PackageManager.PERMISSION_GRANTED
+        )
+
         noteAdapter = object: FirestoreRecyclerAdapter<firebaseModel, NoteViewHolder>(alluser) {
 
             override  fun onBindViewHolder(noteViewHolder:NoteViewHolder,i:Int,firebasemodel: firebaseModel) {
@@ -95,6 +114,40 @@ class HomeActivity : AppCompatActivity() {
                         intent.putExtra(Intent.EXTRA_TEXT, "${firebasemodel.title}\n\n${firebasemodel.description}")
                         intent.type = "text/plain"
                         startActivity(Intent.createChooser(intent, "Select Your application:"))
+                        false
+                    }
+
+                    popup.menu.add("Export to PDF").setOnMenuItemClickListener {
+                        val dateTime1 = LocalDateTime.now()
+                        val format=DateTimeFormatter.ofPattern("ddMMyyyyHHmmss")
+                        val formatDateTime=dateTime1.format(format)
+
+                        val filePath=Environment.getExternalStorageDirectory().path + "/Download/Take_Notes" + formatDateTime + ".pdf"
+                        val file= File(filePath)
+                        val pdfDocument=PdfDocument()
+                        val pageInfo=PdfDocument.PageInfo.Builder(300,600,1).create()
+                        val page=pdfDocument.startPage(pageInfo)
+
+                        val paint= Paint()
+                        val stringPdf=firebasemodel.title+"\n\n"+firebasemodel.description
+
+                        val x = 10
+                        var y = 25
+
+                        for (line in stringPdf.split("\n")) {
+                            page.canvas.drawText(line, x.toFloat(), y.toFloat(), paint)
+                            y += (paint.descent() - paint.ascent()).toInt()
+                        }
+
+                        pdfDocument.finishPage(page)
+                        try {
+                            pdfDocument.writeTo(FileOutputStream(file))
+                        } catch (e:Exception){
+                            Toast.makeText(v.context,e.message.toString(),Toast.LENGTH_SHORT).show();
+                        } finally {
+                            pdfDocument.close()
+                        }
+
                         false
                     }
 
@@ -187,6 +240,13 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.action_setting->{
+                val intent=Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val uri: Uri =Uri.fromParts("package",packageName,null)
+                intent.data = uri
+                startActivity(intent)
+            }
             R.id.logout -> {
                 auth.signOut()
                 finish()
@@ -204,12 +264,6 @@ class HomeActivity : AppCompatActivity() {
         super.onStart()
         noteAdapter.startListening()
     }
-
-    /*override fun onStop() {
-        super.onStop()
-        if(noteAdapter!=null)
-            noteAdapter.stopListening()
-    }*/
 
     //inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     class NoteViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
