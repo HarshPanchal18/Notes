@@ -4,12 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/drawable/button_design.xml" value="0.135" />
+        <entry key="..\:/dev/NotesFirebase/app/src/main/res/drawable/edittext_design.xml" value="0.162" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_change_password.xml" value="0.16" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_create_note.xml" value="0.209375" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_edit_note.xml" value="0.209375" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_forgot_password.xml" value="0.209375" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_preview_note.xml" value="0.18" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/activity_signup.xml" value="0.209375" />
         <entry key="..\:/dev/NotesFirebase/app/src/main/res/layout/button_design.xml" value="0.209375" />
