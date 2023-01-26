@@ -1,6 +1,8 @@
 package com.example.notes_firebase
 
 import android.Manifest
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -8,6 +10,7 @@ import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
@@ -143,7 +146,7 @@ class HomeActivity : AppCompatActivity() {
                         try {
                             pdfDocument.writeTo(FileOutputStream(file))
                         } catch (e:Exception){
-                            Toast.makeText(v.context,e.message.toString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.context,e.message.toString(),Toast.LENGTH_SHORT).show()
                         } finally {
                             pdfDocument.close()
                         }
@@ -249,8 +252,8 @@ class HomeActivity : AppCompatActivity() {
             }
             R.id.logout -> {
                 auth.signOut()
-                finish()
                 startActivity(Intent(this,MainActivity::class.java))
+                finish()
             }
             R.id.changePassword -> {
                 startActivity(Intent(this,ChangePassword::class.java))
@@ -265,7 +268,6 @@ class HomeActivity : AppCompatActivity() {
         noteAdapter.startListening()
     }
 
-    //inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     class NoteViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val notetitle: TextView
         private val notecontent: TextView
@@ -277,9 +279,9 @@ class HomeActivity : AppCompatActivity() {
             mnote = itemView.findViewById(R.id.note)
 
             //Animate Recyclerview
-            val translate_anim: Animation =
+            val translateAnim: Animation =
                 AnimationUtils.loadAnimation(itemView.context, R.anim.translate_anim)
-            mnote.animation = translate_anim
+            mnote.animation = translateAnim
         }
     }
 

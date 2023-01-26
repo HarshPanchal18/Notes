@@ -56,8 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/centerline"
         android:layout_marginBottom="10sp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        android:background="#f9f9f9"
         android:id="@+id/mail"
-        android:background="#CAC7C7"
         android:layout_marginRight="30sp"
         android:layout_marginLeft="30sp">
 
@@ -73,7 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/centerline"
-        android:background="#CAC7C7"
+        android:background="#f9f9f9"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        android:backgroundTint="@color/white"
         android:layout_marginBottom="10sp"
         android:id="@+id/password"
         android:layout_marginRight="30sp"
@@ -124,27 +129,71 @@
         android:textSize="16sp"
         android:visibility="visible" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
+        android:id="@+id/signup"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="30sp"
-        android:background="@drawable/button_design"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/signup">
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:background="@drawable/button_design">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-black"
             android:layout_centerInParent="true"
-            android:text="New user? Want to Sign in?"
-            android:textColor="@color/white" />
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="New user?\nWant to Sign in?"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/gSignup"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:background="@drawable/button_design">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/googleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Start with"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:src="@drawable/googleg_standard_color_18"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </LinearLayout>
 
     <!--<ImageView
         android:id="@+id/splashImage"

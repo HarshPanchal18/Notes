@@ -36,7 +36,7 @@ class EditNote : AppCompatActivity() {
             val updatedDescription=editNoteDescription.text.toString()
 
             if(updatedTitle.isEmpty() or updatedDescription.isEmpty()){
-                Toast.makeText(this,"Fill the boxes properly",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Improper data format,\n\"Please check fields again\"",Toast.LENGTH_SHORT).show()
             } else {
                 val docRef=firestore.collection("notes")
                     .document(user.uid)
